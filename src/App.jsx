@@ -1,110 +1,120 @@
 import { useState } from 'react'
+import heroImg from './assets/hero.png'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
 import './App.css'
 
-// Import images from assets folder
-import logoImg from './assets/logo.jpg'
-import burger1 from './assets/burger1.jpg'
-import burger2 from './assets/burger2.jpg'
-import burger3 from './assets/burger3.jpg'
-import burger4 from './assets/burger4.jpg'
-
-// Component for Star Rating
-function StarRating() {
-  const [stars, setStars] = useState(['☆', '☆', '☆', '☆', '☆'])
-
-  const toggleStar = (index) => {
-    setStars(prevStars => 
-      prevStars.map((star, i) => (i === index ? (star === '☆' ? '★' : '☆') : star))
-    )
-  }
-
-  return (
-    <div className="stars">
-      {stars.map((star, index) => (
-        <span key={index} onClick={() => toggleStar(index)} style={{ cursor: 'pointer' }}>
-          {star}
-        </span>
-      ))}
-      <span className="heart">♡</span>
-    </div>
-  )
-}
-
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <>
-      {/* Navigation Bar */}
-      <header>
-        <div className="logo">
-          <img src={logoImg} alt="Tasty Burger Logo" />
+      <section id="center">
+        <div className="hero">
+          <img src={heroImg} className="base" width="170" height="179" alt="" />
+          <img src={reactLogo} className="framework" alt="React logo" />
+          <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
-        <nav>
-          <a href="#">ABOUT</a>
-          <a href="#">OUR MENU</a>
-          <a href="#">SHOP</a>
-          <a href="#">CONTACT</a>
-          <span className="cart-icon">🛍️ <span className="badge">2</span></span>
-        </nav>
-      </header>
+        <div>
+          <h1>Get started</h1>
+          <p>
+            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+          </p>
+        </div>
+        <button
+          type="button"
+          className="counter"
+          onClick={() => setCount((count) => count + 1)}
+        >
+          Count is {count}
+        </button>
+      </section>
 
-      {/* Section Title */}
-      <section className="menu-section">
-        <h1 className="main-title">OUR CRAZY BURGERS</h1>
-        <p className="subtitle">
-          Get ready for a wild ride of flavors! Our crazy burgers are loaded with juicy
-          patties, bold toppings, and irresistible sauces, all stacked on a perfectly toasted
-          bun. Whether you like it cheesy, or extra meaty, we've got a burger that will blow your mind!
-        </p>
+      <div className="ticks"></div>
 
-        {/* Burger Cards Grid */}
-        <div className="burger-grid">
-
-          {/* Card 1 */}
-          <div className="card">
-            <img src={burger1} alt="Crispy Chicken" />
-            <div className="card-body">
-              <StarRating />
-              <h3>Crispy Chicken</h3>
-              <p>Chicken breast, chilli sauce, tomatoes, pickles, coleslaw</p>
-              <span className="price">&#2547;99.15</span>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="card">
-            <img src={burger2} alt="Ultimate Bacon" />
-            <div className="card-body">
-              <StarRating />
-              <h3>Ultimate Bacon</h3>
-              <p>House patty, cheddar cheese, bacon, onion, mustard</p>
-              <span className="price">&#2547;99.32</span>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="card">
-            <img src={burger3} alt="Black Sheep" />
-            <div className="card-body">
-              <StarRating />
-              <h3>Black Sheep</h3>
-              <p>American cheese, tomato relish, avocado, lettuce, red onion</p>
-              <span className="price">&#2547;69.15</span>
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="card">
-            <img src={burger4} alt="Vegan Burger" />
-            <div className="card-body">
-              <StarRating />
-              <h3>Vegan Burger</h3>
-              <p>House patty, cheddar cheese, bacon, onion, mustard</p>
-              <span className="price">&#2547;99.25</span>
-            </div>
-          </div>
-
+      <section id="next-steps">
+        <div id="docs">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#documentation-icon"></use>
+          </svg>
+          <h2>Documentation</h2>
+          <p>Your questions, answered</p>
+          <ul>
+            <li>
+              <a href="https://vite.dev/" target="_blank">
+                <img className="logo" src={viteLogo} alt="" />
+                Explore Vite
+              </a>
+            </li>
+            <li>
+              <a href="https://react.dev/" target="_blank">
+                <img className="button-icon" src={reactLogo} alt="" />
+                Learn more
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="social">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#social-icon"></use>
+          </svg>
+          <h2>Connect with us</h2>
+          <p>Join the Vite community</p>
+          <ul>
+            <li>
+              <a href="https://github.com/vitejs/vite" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#github-icon"></use>
+                </svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://chat.vite.dev/" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#discord-icon"></use>
+                </svg>
+                Discord
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/vite_js" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#x-icon"></use>
+                </svg>
+                X.com
+              </a>
+            </li>
+            <li>
+              <a href="https://bsky.app/profile/vite.dev" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#bluesky-icon"></use>
+                </svg>
+                Bluesky
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
+
+      <div className="ticks"></div>
+      <section id="spacer"></section>
     </>
   )
 }
