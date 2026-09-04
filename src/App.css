@@ -115,7 +115,7 @@ nav a {
 
 .stars {
   color: #ffb400;
-  font-size: 14px;
+  font-size: 15px;
   display: block; 
   position: relative;
   margin-bottom: 8px;
@@ -124,7 +124,7 @@ nav a {
 .stars span:not(.heart) {
   cursor: pointer;
   color: #ffb703;
-  font-size: 14px;
+  font-size: 15px;
   user-select: none;
   margin-right: -2px; 
 }
@@ -135,6 +135,7 @@ nav a {
   position: absolute;
   right: 0;
   top: 0;
+  font-size: 15px;
   user-select: none;
   transition: color 0.2s ease, transform 0.1s ease;
 }
