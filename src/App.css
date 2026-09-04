@@ -10,6 +10,7 @@ body {
   color: #333;
 }
 
+/* Header & Navigation */
 header {
   display: flex;
   justify-content: space-between;
@@ -18,7 +19,7 @@ header {
 }
 
 .logo img {
-  width: 180px; 
+  width: 180px;
   height: auto;
 }
 
@@ -47,6 +48,7 @@ nav a {
   font-size: 11px;
 }
 
+/* Menu Section Layout */
 .menu-section {
   text-align: center;
   padding: 40px 10%;
@@ -67,6 +69,7 @@ nav a {
   line-height: 1.5;
 }
 
+/* Burger Cards Grid */
 .burger-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -88,7 +91,7 @@ nav a {
 }
 
 .card-body {
-  text-align: left; 
+  text-align: left;
 }
 
 .card-body h3 {
@@ -113,10 +116,11 @@ nav a {
   border-radius: 3px;
 }
 
+/* Star Rating & Heart Icon */
 .stars {
   color: #ffb400;
   font-size: 15px;
-  display: block; 
+  display: block;
   position: relative;
   margin-bottom: 8px;
 }
@@ -126,7 +130,7 @@ nav a {
   color: #ffb703;
   font-size: 15px;
   user-select: none;
-  margin-right: -2px; 
+  margin-right: -2px;
 }
 
 .heart {
@@ -144,6 +148,7 @@ nav a {
   color: #e50914;
 }
 
+/* Clickable Image */
 .clickable-img {
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -154,6 +159,7 @@ nav a {
   opacity: 0.95;
 }
 
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -168,6 +174,7 @@ nav a {
   animation: fadeIn 0.2s ease-in-out;
 }
 
+/* Image Modal Box */
 .modal-content {
   position: relative;
   max-width: 90%;
@@ -183,25 +190,83 @@ nav a {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
+/* Fixed Close Button Inside Modal Box */
 .close-btn {
   position: absolute;
-  top: -15px;
-  right: -15px;
+  top: 10px;
+  right: 12px;
   background: #e50914;
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
 }
 
-/* Animations */
+/* Navigation Info Modal Box */
+.info-modal-content {
+  position: relative;
+  background: #fff;
+  padding: 35px 25px 25px 25px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.info-modal-content h2 {
+  color: #e50914;
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.info-modal-body p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Menu Details Layout Inside Modal */
+.menu-modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.menu-item-detail {
+  background: #f9f9f9;
+  padding: 10px 12px;
+  border-left: 4px solid #e50914;
+  border-radius: 4px;
+}
+
+.menu-item-detail h4 {
+  color: #111;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.menu-item-detail p {
+  color: #666;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* Modal Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
