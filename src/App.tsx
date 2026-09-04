@@ -41,6 +41,8 @@ function StarRating() {
 }
 
 function App() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+
   return (
     <>
       {/* Navigation Bar */}
@@ -71,7 +73,12 @@ function App() {
 
           {/* Card 1 */}
           <div className="card">
-            <img src={burger1} alt="Crispy Chicken" />
+            <img 
+              src={burger1} 
+              alt="Crispy Chicken" 
+              className="clickable-img"
+              onClick={() => setSelectedImage(burger1)} 
+            />
             <div className="card-body">
               <StarRating />
               <h3>Crispy Chicken</h3>
@@ -82,7 +89,12 @@ function App() {
 
           {/* Card 2 */}
           <div className="card">
-            <img src={burger2} alt="Ultimate Bacon" />
+            <img 
+              src={burger2} 
+              alt="Ultimate Bacon" 
+              className="clickable-img"
+              onClick={() => setSelectedImage(burger2)} 
+            />
             <div className="card-body">
               <StarRating />
               <h3>Ultimate Bacon</h3>
@@ -93,7 +105,12 @@ function App() {
 
           {/* Card 3 */}
           <div className="card">
-            <img src={burger3} alt="Black Sheep" />
+            <img 
+              src={burger3} 
+              alt="Black Sheep" 
+              className="clickable-img"
+              onClick={() => setSelectedImage(burger3)} 
+            />
             <div className="card-body">
               <StarRating />
               <h3>Black Sheep</h3>
@@ -104,7 +121,12 @@ function App() {
 
           {/* Card 4 */}
           <div className="card">
-            <img src={burger4} alt="Vegan Burger" />
+            <img 
+              src={burger4} 
+              alt="Vegan Burger" 
+              className="clickable-img"
+              onClick={() => setSelectedImage(burger4)} 
+            />
             <div className="card-body">
               <StarRating />
               <h3>Vegan Burger</h3>
@@ -115,6 +137,16 @@ function App() {
 
         </div>
       </section>
+
+      {/* Image Pop-Out Modal */}
+      {selectedImage && (
+        <div className="modal-overlay" onClick={() => setSelectedImage(null)}>
+          <div className="modal-content">
+            <span className="close-btn" onClick={() => setSelectedImage(null)}>&times;</span>
+            <img src={selectedImage} alt="Pop-out view" />
+          </div>
+        </div>
+      )}
     </>
   )
 }
