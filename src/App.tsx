@@ -10,10 +10,10 @@ import burger4 from './assets/burger4.jpg'
 
 // Component for Star Rating
 function StarRating() {
-  const [stars, setStars] = useState(['☆', '☆', '☆', '☆', '☆'])
+  const [stars, setStars] = useState<string[]>(['☆', '☆', '☆', '☆', '☆'])
 
-  const toggleStar = (index) => {
-    setStars(prevStars => 
+  const toggleStar = (index: number): void => {
+    setStars((prevStars) =>
       prevStars.map((star, i) => (i === index ? (star === '☆' ? '★' : '☆') : star))
     )
   }
