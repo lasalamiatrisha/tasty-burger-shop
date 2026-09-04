@@ -20,8 +20,8 @@ header {
 .logo img {
   width: 180px; 
   height: auto;
-  
 }
+
 nav a {
   margin: 0 15px;
   text-decoration: none;
@@ -46,6 +46,7 @@ nav a {
   padding: 2px 6px;
   font-size: 11px;
 }
+
 .menu-section {
   text-align: center;
   padding: 40px 10%;
@@ -65,6 +66,7 @@ nav a {
   font-size: 14px;
   line-height: 1.5;
 }
+
 .burger-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -89,21 +91,6 @@ nav a {
   text-align: left; 
 }
 
-.stars {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  width: 100%;
-}
-
-.heart {
-  color: #aaa;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 .card-body h3 {
   font-size: 16px;
   margin: 8px 0;
@@ -125,6 +112,7 @@ nav a {
   font-weight: bold;
   border-radius: 3px;
 }
+
 .stars {
   color: #ffb400;
   font-size: 14px;
@@ -132,10 +120,25 @@ nav a {
   position: relative;
   margin-bottom: 8px;
 }
+
 .stars span:not(.heart) {
   cursor: pointer;
   color: #ffb703;
   font-size: 14px;
   user-select: none;
   margin-right: -2px; 
+}
+
+.heart {
+  color: #aaa;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  user-select: none;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.heart.liked {
+  color: #e50914;
 }

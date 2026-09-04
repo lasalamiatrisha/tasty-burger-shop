@@ -8,14 +8,19 @@ import burger2 from './assets/burger2.jpg'
 import burger3 from './assets/burger3.jpg'
 import burger4 from './assets/burger4.jpg'
 
-// Component for Star Rating
+// Component for Star Rating & Heart Toggle
 function StarRating() {
   const [stars, setStars] = useState<string[]>(['☆', '☆', '☆', '☆', '☆'])
+  const [isLiked, setIsLiked] = useState<boolean>(false)
 
   const toggleStar = (index: number): void => {
     setStars((prevStars) =>
       prevStars.map((star, i) => (i === index ? (star === '☆' ? '★' : '☆') : star))
     )
+  }
+
+  const toggleHeart = (): void => {
+    setIsLiked((prev) => !prev)
   }
 
   return (
@@ -25,7 +30,12 @@ function StarRating() {
           {star}
         </span>
       ))}
-      <span className="heart">♡</span>
+      <span 
+        className={`heart ${isLiked ? 'liked' : ''}`} 
+        onClick={toggleHeart}
+      >
+        {isLiked ? '♥' : '♡'}
+      </span>
     </div>
   )
 }
