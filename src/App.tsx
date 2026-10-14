@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 // Import images from assets folder 
@@ -40,6 +40,7 @@ const PROMO_SLIDES: Slide[] = [
     image: burger3,
   },
 ]
+
 function ImageSlider({ slides }: { slides: Slide[] }) {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
@@ -159,6 +160,9 @@ function App() {
   const [modalQty, setModalQty] = useState<number>(1)
   const [cart, setCart] = useState<CartItem[]>([])
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
+
+  // Toggle State for View All (false = show top 4, true = show all 8)
+  const [showAll, setShowAll] = useState<boolean>(false)
 
   // Open Product Modal with clicked burger details
   const handleOpenBurgerModal = (burger: SelectedBurger) => {
@@ -305,8 +309,8 @@ function App() {
           bun. Whether you like it cheesy, or extra meaty, we've got a burger that will blow your mind!
         </p>
 
-         {/* Burger Cards Grid */}
-        <div className="burger-grid">
+        {/* Burger Cards Grid */}
+        <div className={`burger-grid ${showAll ? 'show-all' : ''}`}>
 
           {/* Card 1 */}
           <div className="card">
@@ -492,6 +496,16 @@ function App() {
             </div>
           </div>
 
+        </div>
+
+        {/* View All / Show Less Toggle Button */}
+        <div className="view-all-wrapper">
+          <button 
+            className="view-all-btn" 
+            onClick={() => setShowAll((prev) => !prev)}
+          >
+            {showAll ? 'Show Less' : 'View All'}
+          </button>
         </div>
       </section>
 

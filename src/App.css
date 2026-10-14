@@ -541,3 +541,38 @@ nav a {
   transform: scale(1.2);
 }
 
+/* Hide cards 5 through 8 by default */
+.burger-grid .card:nth-child(n+5) {
+  display: none;
+}
+
+/* Reveal all cards when show-all class is applied */
+.burger-grid.show-all .card:nth-child(n+5) {
+  display: flex;
+}
+
+/* View All Wrapper & Button Styling */
+.view-all-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 900px;
+  margin: 20px auto 0 auto;
+  padding: 0 10px;
+}
+
+.view-all-btn {
+  padding: 8px 22px;
+  background-color: #a80000;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.view-all-btn:hover {
+  background-color: #800000;
+  transform: translateY(-1px);
+}
