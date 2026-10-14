@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 
-// Import images from assets folder
+// Import images from assets folder 
 import logoImg from './assets/logo.jpg'
 import burger1 from './assets/burger1.jpg'
 import burger2 from './assets/burger2.jpg'
@@ -45,10 +45,88 @@ interface NavModalContent {
   content: React.ReactNode
 }
 
+interface SelectedBurger {
+  id: number
+  name: string
+  description: string
+  price: string
+  numericPrice: number
+  image: string
+}
+
+interface CartItem {
+  id: number
+  name: string
+  price: number
+  quantity: number
+  image: string
+}
+
 function App() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  // Navigation Modal State
   const [navModal, setNavModal] = useState<NavModalContent | null>(null)
 
+  // Whiteboard V2 States: Product Modal & Cart State
+  const [selectedBurger, setSelectedBurger] = useState<SelectedBurger | null>(null)
+  const [modalQty, setModalQty] = useState<number>(1)
+  const [cart, setCart] = useState<CartItem[]>([])
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
+
+  // Open Product Modal with clicked burger details
+  const handleOpenBurgerModal = (burger: SelectedBurger) => {
+    setSelectedBurger(burger)
+    setModalQty(1)
+  }
+
+  // Add Item to Cart
+  const handleAddToCart = () => {
+    if (!selectedBurger) return
+
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === selectedBurger.id)
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === selectedBurger.id
+            ? { ...item, quantity: item.quantity + modalQty }
+            : item
+        )
+      }
+      return [
+        ...prevCart,
+        {
+          id: selectedBurger.id,
+          name: selectedBurger.name,
+          price: selectedBurger.numericPrice,
+          quantity: modalQty,
+          image: selectedBurger.image,
+        },
+      ]
+    })
+
+    setSelectedBurger(null)
+    setIsCartOpen(true) // Open cart drawer after adding item
+  }
+
+  // Update Cart Quantity directly inside Cart Drawer
+  const handleUpdateCartQty = (id: number, delta: number) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) => {
+          if (item.id === id) {
+            const newQty = item.quantity + delta
+            return newQty > 0 ? { ...item, quantity: newQty } : null
+          }
+          return item
+        })
+        .filter((item): item is CartItem => item !== null)
+    )
+  }
+
+  // Totals
+  const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0)
+  const totalCartPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+
+  // Original Nav Modal Handler
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, type: string) => {
     e.preventDefault()
     if (type === 'ABOUT') {
@@ -117,11 +195,17 @@ function App() {
           <a href="#" onClick={(e) => handleNavClick(e, 'MENU')}>OUR MENU</a>
           <a href="#" onClick={(e) => handleNavClick(e, 'SHOP')}>SHOP</a>
           <a href="#" onClick={(e) => handleNavClick(e, 'CONTACT')}>CONTACT</a>
-          <span className="cart-icon">🛍️ <span className="badge">2</span></span>
+          <span 
+            className="cart-icon" 
+            onClick={() => setIsCartOpen(!isCartOpen)} 
+            style={{ cursor: 'pointer' }}
+          >
+            🛍️ <span className="badge">{totalCartCount}</span>
+          </span>
         </nav>
       </header>
 
-      {/* Section Title */}
+      {/* Main Section */}
       <section className="menu-section">
         <h1 className="main-title">OUR CRAZY BURGERS</h1>
         <p className="subtitle">
@@ -139,7 +223,14 @@ function App() {
               src={burger1} 
               alt="Crispy Chicken" 
               className="clickable-img"
-              onClick={() => setSelectedImage(burger1)} 
+              onClick={() => handleOpenBurgerModal({
+                id: 1,
+                name: 'Crispy Chicken',
+                description: 'Chicken breast, chilli sauce, tomatoes, pickles, coleslaw',
+                price: '৳99.15',
+                numericPrice: 99.15,
+                image: burger1
+              })} 
             />
             <div className="card-body">
               <StarRating />
@@ -155,7 +246,14 @@ function App() {
               src={burger2} 
               alt="Ultimate Bacon" 
               className="clickable-img"
-              onClick={() => setSelectedImage(burger2)} 
+              onClick={() => handleOpenBurgerModal({
+                id: 2,
+                name: 'Ultimate Bacon',
+                description: 'House patty, cheddar cheese, bacon, onion, mustard',
+                price: '৳99.32',
+                numericPrice: 99.32,
+                image: burger2
+              })} 
             />
             <div className="card-body">
               <StarRating />
@@ -171,7 +269,14 @@ function App() {
               src={burger3} 
               alt="Black Sheep" 
               className="clickable-img"
-              onClick={() => setSelectedImage(burger3)} 
+              onClick={() => handleOpenBurgerModal({
+                id: 3,
+                name: 'Black Sheep',
+                description: 'American cheese, tomato relish, avocado, lettuce, red onion',
+                price: '৳69.15',
+                numericPrice: 69.15,
+                image: burger3
+              })} 
             />
             <div className="card-body">
               <StarRating />
@@ -187,7 +292,14 @@ function App() {
               src={burger4} 
               alt="Vegan Burger" 
               className="clickable-img"
-              onClick={() => setSelectedImage(burger4)} 
+              onClick={() => handleOpenBurgerModal({
+                id: 4,
+                name: 'Vegan Burger',
+                description: 'House patty, cheddar cheese, bacon, onion, mustard',
+                price: '৳99.25',
+                numericPrice: 99.25,
+                image: burger4
+              })} 
             />
             <div className="card-body">
               <StarRating />
@@ -200,12 +312,67 @@ function App() {
         </div>
       </section>
 
-      {/* Image Pop-Out Modal */}
-      {selectedImage && (
-        <div className="modal-overlay" onClick={() => setSelectedImage(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-btn" onClick={() => setSelectedImage(null)}>&times;</span>
-            <img src={selectedImage} alt="Pop-out view" />
+      {/* Product Detail Modal */}
+      {selectedBurger && (
+        <div className="modal-overlay" onClick={() => setSelectedBurger(null)}>
+          <div className="product-detail-modal" onClick={(e) => e.stopPropagation()}>
+            <span className="close-btn" onClick={() => setSelectedBurger(null)}>&times;</span>
+            <div className="modal-img-wrapper">
+              <img src={selectedBurger.image} alt={selectedBurger.name} />
+            </div>
+            <h2>{selectedBurger.name}</h2>
+            <p className="modal-desc">{selectedBurger.description}</p>
+            <span className="modal-price">{selectedBurger.price}</span>
+
+            {/* Quantity Controls & Add to Cart */}
+            <div className="modal-action-box">
+              <div className="qty-controls">
+                <button onClick={() => setModalQty((q) => Math.max(1, q - 1))}>-</button>
+                <span>{modalQty}</span>
+                <button onClick={() => setModalQty((q) => q + 1)}>+</button>
+              </div>
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Slide-out / Floating Cart Drawer Panel */}
+      {isCartOpen && (
+        <div className="cart-drawer-panel">
+          <div className="cart-header">
+            <h3>Cart ({totalCartCount})</h3>
+            <span className="close-btn" onClick={() => setIsCartOpen(false)}>&times;</span>
+          </div>
+
+          <div className="cart-body">
+            {cart.length === 0 ? (
+              <p className="empty-cart">Your cart is empty.</p>
+            ) : (
+              cart.map((item) => (
+                <div key={item.id} className="cart-item-row">
+                  <span className="cart-item-name">{item.name}</span>
+                  <div className="cart-qty-controls">
+                    <button onClick={() => handleUpdateCartQty(item.id, -1)}>-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => handleUpdateCartQty(item.id, 1)}>+</button>
+                  </div>
+                  <span className="cart-item-price">৳{(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+              ))
+            )}
+          </div>
+
+          <div className="cart-footer">
+            <div className="total-row">
+              <strong>Total:</strong>
+              <strong className="total-price">৳{totalCartPrice.toFixed(2)}</strong>
+            </div>
+            <button className="checkout-btn" disabled={cart.length === 0}>
+              Checkout
+            </button>
           </div>
         </div>
       )}
