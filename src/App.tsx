@@ -39,6 +39,29 @@ const PROMO_SLIDES: Slide[] = [
     subtitle: 'Try our Black Sheep with fresh avocado relish!',
     image: burger3,
   },
+  {id: 5,
+    title: 'DOUBLE CHEESEBURGER CRAZE',
+    subtitle: 'Double beef patty, extra cheddar cheese, pickles, and mustard!',
+    image: burger5,
+  },
+  {
+    id: 6,
+    title: 'SPICY JALAPEÑO KICK',
+    subtitle: 'Grilled patty, pepper jack cheese, jalapeños, and spicy mayo.',
+    image: burger6,
+  },
+  {
+    id: 7,
+    title: 'MUSHROOM SWISS MELT',
+    subtitle: 'Beef patty, Swiss cheese, sautéed mushrooms, and garlic aioli.',
+    image: burger7,
+  },
+  {
+    id: 8,
+    title: 'SMOKY BBQ PULLED PORK',
+    subtitle: 'Slow-cooked pulled pork, BBQ sauce, and crispy onion rings.',
+    image: burger8,
+  }
 ]
 
 function ImageSlider({ slides }: { slides: Slide[] }) {
@@ -250,6 +273,22 @@ function App() {
             <div className="menu-item-detail">
               <h4>4. Vegan Burger — ৳99.25</h4>
               <p>100% plant-based patty, vegan cheddar cheese, savory vegan bacon bits, onions, and mustard sauce.</p>
+            </div>
+            <div className="menu-item-detail">
+           <h4>5. Double Cheeseburger — ৳119.50</h4>
+              <p>Double beef patty, extra cheddar cheese, pickles, and mustard.</p>
+            </div>
+            <div className="menu-item-detail">
+              <h4>6. Spicy Jalapeño — ৳89.00</h4>
+              <p>Grilled patty, pepper jack cheese, jalapeños, and spicy mayo.</p>
+            </div>
+            <div className="menu-item-detail">
+              <h4>7. Mushroom Swiss — ৳109.99</h4>
+              <p>Beef patty, Swiss cheese, sautéed mushrooms, and garlic aioli.</p>
+            </div>
+            <div className="menu-item-detail">
+              <h4>8. BBQ Pulled Pork — ৳125.50</h4>
+              <p>Smoky pulled pork, BBQ sauce, crispy onion rings, and coleslaw.</p>
             </div>
           </div>
         )

@@ -119,16 +119,16 @@ nav a {
 /* Star Rating & Heart Icon */
 .stars {
   color: #ffb400;
-  font-size: 15px;
+  font-size: 20px;
   display: block;
   position: relative;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .stars span:not(.heart) {
   cursor: pointer;
   color: #ffb703;
-  font-size: 15px;
+  font-size: 20px;
   user-select: none;
   margin-right: -2px;
 }
@@ -139,7 +139,7 @@ nav a {
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 15px;
+  font-size: 20px;
   user-select: none;
   transition: color 0.2s ease, transform 0.1s ease;
 }
@@ -451,7 +451,7 @@ nav a {
   bottom: -10%;
   background-size: cover;
   background-position: center;
-  filter: blur(15px) brightness(0.6);
+  filter: blur(2px) brightness(0.9);
   transform: scale(1.1); /* Prevents white edges when blurred */
   z-index: 1;
 }
