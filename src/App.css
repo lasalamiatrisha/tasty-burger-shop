@@ -419,3 +419,124 @@ nav a {
   font-weight: bold;
   cursor: pointer;
 }
+/* Image Slider Outer Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 280px;
+  margin: 0 auto 30px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #333;
+}
+
+.slider-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Blurred Background Image Layer */
+.slider-bg-blur {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.6);
+  transform: scale(1.1); /* Prevents white edges when blurred */
+  z-index: 1;
+}
+
+/* Main Clear Burger Image */
+.slider-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Full burger visible without cropping */
+}
+
+/* Overlay Text Banner */
+.slider-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: #ffffff;
+  text-align: left;
+  z-index: 3;
+}
+
+.slider-overlay h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #ff4757;
+}
+
+.slider-overlay p {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  color: #f1f1f1;
+}
+
+/* Arrow Navigation Buttons */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  font-size: 1.2rem;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background: rgba(255, 71, 87, 0.9);
+}
+
+.prev-btn {
+  left: 12px;
+}
+
+.next-btn {
+  right: 12px;
+}
+
+/* Indicator Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #ff4757;
+  transform: scale(1.2);
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 // Import images from assets folder 
@@ -7,6 +7,90 @@ import burger1 from './assets/burger1.jpg'
 import burger2 from './assets/burger2.jpg'
 import burger3 from './assets/burger3.jpg'
 import burger4 from './assets/burger4.jpg'
+
+// Promo Slider Component
+interface Slide {
+  id: number
+  title: string
+  subtitle: string
+  image: string
+}
+
+const PROMO_SLIDES: Slide[] = [
+  {
+    id: 1,
+    title: 'SPECIAL WEEKEND DEAL',
+    subtitle: 'Buy 1 Crispy Chicken, Get Free Drinks!',
+    image: burger1,
+  },
+  {
+    id: 2,
+    title: 'NEW ULTIMATE BACON',
+    subtitle: 'Loaded with double cheddar and smoky bacon strips.',
+    image: burger2,
+  },
+  {
+    id: 3,
+    title: 'FRESH & CRAZY FLAVORS',
+    subtitle: 'Try our Black Sheep with fresh avocado relish!',
+    image: burger3,
+  },
+]
+function ImageSlider({ slides }: { slides: Slide[] }) {
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1))
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length)
+  }
+
+  return (
+    <div className="slider-container">
+      <div className="slider-card">
+        {/* Blurred Background Image Layer */}
+        <div 
+          className="slider-bg-blur"
+          style={{ backgroundImage: `url(${slides[currentIndex].image})` }}
+        />
+
+        {/* Main Clean Burger Image */}
+        <img
+          src={slides[currentIndex].image}
+          alt={slides[currentIndex].title}
+          className="slider-img"
+        />
+
+        {/* Overlay Banner Text */}
+        <div className="slider-overlay">
+          <h2>{slides[currentIndex].title}</h2>
+          <p>{slides[currentIndex].subtitle}</p>
+        </div>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button className="slider-btn prev-btn" onClick={goToPrev}>
+        &#10094;
+      </button>
+      <button className="slider-btn next-btn" onClick={goToNext}>
+        &#10095;
+      </button>
+
+      {/* Indicator Dots */}
+      <div className="slider-dots">
+        {slides.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => setCurrentIndex(index)}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 // Component for Star Rating & Heart Toggle
 function StarRating() {
@@ -66,7 +150,7 @@ function App() {
   // Navigation Modal State
   const [navModal, setNavModal] = useState<NavModalContent | null>(null)
 
-  // Whiteboard V2 States: Product Modal & Cart State
+  // Product Modal & Cart State
   const [selectedBurger, setSelectedBurger] = useState<SelectedBurger | null>(null)
   const [modalQty, setModalQty] = useState<number>(1)
   const [cart, setCart] = useState<CartItem[]>([])
@@ -207,6 +291,9 @@ function App() {
 
       {/* Main Section */}
       <section className="menu-section">
+        {/* Banner Image Slider */}
+        <ImageSlider slides={PROMO_SLIDES} />
+
         <h1 className="main-title">OUR CRAZY BURGERS</h1>
         <p className="subtitle">
           Get ready for a wild ride of flavors! Our crazy burgers are loaded with juicy
