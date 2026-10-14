@@ -7,6 +7,10 @@ import burger1 from './assets/burger1.jpg'
 import burger2 from './assets/burger2.jpg'
 import burger3 from './assets/burger3.jpg'
 import burger4 from './assets/burger4.jpg'
+import burger5 from './assets/burger5.png'
+import burger6 from './assets/burger6.png'
+import burger7 from './assets/burger7.png'
+import burger8 from './assets/burger8.png'
 
 // Promo Slider Component
 interface Slide {
@@ -20,7 +24,7 @@ const PROMO_SLIDES: Slide[] = [
   {
     id: 1,
     title: 'SPECIAL WEEKEND DEAL',
-    subtitle: 'Buy 1 Crispy Chicken, Get Free Drinks!',
+    subtitle: 'Buy 2 Crispy Chicken, Get 1 Free Drinks!',
     image: burger1,
   },
   {
@@ -301,7 +305,7 @@ function App() {
           bun. Whether you like it cheesy, or extra meaty, we've got a burger that will blow your mind!
         </p>
 
-        {/* Burger Cards Grid */}
+         {/* Burger Cards Grid */}
         <div className="burger-grid">
 
           {/* Card 1 */}
@@ -393,6 +397,98 @@ function App() {
               <h3>Vegan Burger</h3>
               <p>House patty, cheddar cheese, bacon, onion, mustard</p>
               <span className="price">&#2547;99.25</span>
+            </div>
+          </div>
+
+          {/* Card 5 (NEW) */}
+          <div className="card">
+            <img 
+              src={burger5} 
+              alt="Double Cheeseburger" 
+              className="clickable-img"
+              onClick={() => handleOpenBurgerModal({
+                id: 5,
+                name: 'Double Cheeseburger',
+                description: 'Double beef patty, extra cheddar cheese, pickles, mustard',
+                price: '৳119.50',
+                numericPrice: 119.50,
+                image: burger5
+              })} 
+            />
+            <div className="card-body">
+              <StarRating />
+              <h3>Double Cheeseburger</h3>
+              <p>Double beef patty, extra cheddar cheese, pickles, mustard</p>
+              <span className="price">&#2547;119.50</span>
+            </div>
+          </div>
+
+          {/* Card 6 (NEW) */}
+          <div className="card">
+            <img 
+              src={burger6} 
+              alt="Spicy Jalapeño" 
+              className="clickable-img"
+              onClick={() => handleOpenBurgerModal({
+                id: 6,
+                name: 'Spicy Jalapeño',
+                description: 'Grilled patty, pepper jack cheese, jalapeños, spicy mayo',
+                price: '৳89.00',
+                numericPrice: 89.00,
+                image: burger6
+              })} 
+            />
+            <div className="card-body">
+              <StarRating />
+              <h3>Spicy Jalapeño</h3>
+              <p>Grilled patty, pepper jack cheese, jalapeños, spicy mayo</p>
+              <span className="price">&#2547;89.00</span>
+            </div>
+          </div>
+
+          {/* Card 7 (NEW) */}
+          <div className="card">
+            <img 
+              src={burger7} 
+              alt="Mushroom Swiss" 
+              className="clickable-img"
+              onClick={() => handleOpenBurgerModal({
+                id: 7,
+                name: 'Mushroom Swiss',
+                description: 'Beef patty, Swiss cheese, sautéed mushrooms, garlic aioli',
+                price: '৳109.99',
+                numericPrice: 109.99,
+                image: burger7
+              })} 
+            />
+            <div className="card-body">
+              <StarRating />
+              <h3>Mushroom Swiss</h3>
+              <p>Beef patty, Swiss cheese, sautéed mushrooms, garlic aioli</p>
+              <span className="price">&#2547;109.99</span>
+            </div>
+          </div>
+
+          {/* Card 8 (NEW) */}
+          <div className="card">
+            <img 
+              src={burger8} 
+              alt="BBQ Pulled Pork" 
+              className="clickable-img"
+              onClick={() => handleOpenBurgerModal({
+                id: 8,
+                name: 'BBQ Pulled Pork',
+                description: 'Smoky pulled pork, BBQ sauce, crispy onion rings, coleslaw',
+                price: '৳125.50',
+                numericPrice: 125.50,
+                image: burger8
+              })} 
+            />
+            <div className="card-body">
+              <StarRating />
+              <h3>BBQ Pulled Pork</h3>
+              <p>Smoky pulled pork, BBQ sauce, crispy onion rings, coleslaw</p>
+              <span className="price">&#2547;125.50</span>
             </div>
           </div>
 
